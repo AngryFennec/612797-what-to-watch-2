@@ -1,7 +1,7 @@
 # Личный проект «Что посмотреть» [![Build status][travis-image]][travis-url]
 
 * Студент: [Анастасия Ничипорчук](https://up.htmlacademy.ru/react/2/user/612797).
-* Наставник: `Неизвестно`.
+* Наставник: [Денис Быков](https://up.htmlacademy.ru/react/2/user/66426).
 
 ---
 
