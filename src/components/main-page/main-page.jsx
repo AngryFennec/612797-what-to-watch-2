@@ -1,9 +1,16 @@
 import React from "react";
+<<<<<<< HEAD
 import MovieCard from "../movie-card/movie-card.jsx";
 import PropTypes from 'prop-types';
 
 const MainPage = (props) => {
   const titles = (props.titles.titles);
+=======
+import PropTypes from 'prop-types';
+
+const MainPage = (props) => {
+  const titles = props.titles;
+>>>>>>> 6fa3f0a9dc08a8bf181497e28bf45cc275e7d6a1
   return (
     <React.Fragment>
       <div className="visually-hidden">
@@ -155,7 +162,11 @@ const MainPage = (props) => {
 };
 
 MainPage.propTypes = {
+<<<<<<< HEAD
   titles: PropTypes.object
+=======
+  titles: PropTypes.arrayOf(PropTypes.string),
+>>>>>>> 6fa3f0a9dc08a8bf181497e28bf45cc275e7d6a1
 };
 
 export default MainPage;
