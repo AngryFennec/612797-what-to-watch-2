@@ -3,7 +3,7 @@ import MovieCard from "../movie-card/movie-card.jsx";
 import PropTypes from 'prop-types';
 
 const MainPage = (props) => {
-  const titles = (props.titles.titles);
+  const {titles} = props;
   return (
     <React.Fragment>
       <div className="visually-hidden">
@@ -128,7 +128,7 @@ const MainPage = (props) => {
 
           <div className="catalog__movies-list">
             {titles.map(
-                (title, i) => <MovieCard title = {title} id={i}/>
+                (title, i) => <MovieCard title = {title} id={`${title}-${i}`} key={`${title}-${i}`}/>
             )}
           </div>
 
@@ -155,7 +155,7 @@ const MainPage = (props) => {
 };
 
 MainPage.propTypes = {
-  titles: PropTypes.object
+  titles: PropTypes.arrayOf(PropTypes.string)
 };
 
 export default MainPage;

@@ -3,9 +3,8 @@ import PropTypes from 'prop-types';
 
 const MovieCard = (props) => {
   const {title, id} = props;
-  console.log(id);
 
-  return (<article className="small-movie-card catalog__movies-card" key={id}>
+  return (<article className="small-movie-card catalog__movies-card" id={id}>
     <div className="small-movie-card__image">
       <img src="img/fantastic-beasts-the-crimes-of-grindelwald.jpg" alt="Fantastic Beasts: The Crimes of Grindelwald" width="280" height="175" />
     </div>
@@ -18,7 +17,7 @@ const MovieCard = (props) => {
 
 MovieCard.propTypes = {
   title: PropTypes.string,
-  id: PropTypes.int
+  id: PropTypes.string
 };
 
 export default MovieCard;
