@@ -1,12 +1,12 @@
 import React from 'react';
-import App from './app.jsx';
+import MovieList from './movie-list.jsx';
 import renderer from 'react-test-renderer';
 
 const titles = [`Fantastic Beasts`, `Bohemian Rhapsody`, `Macbeth`, `Yet another movie`];
 
-it(`App component renders correctly`, () => {
+it(`MovieList component renders correctly`, () => {
   const tree = renderer
-    .create(<App
+    .create(<MovieList
       titles = {titles}
       onTitleClick = {jest.fn()}
     />)
