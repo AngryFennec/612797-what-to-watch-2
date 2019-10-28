@@ -1,9 +1,9 @@
 import React from "react";
-import MovieCard from "../movie-card/movie-card.jsx";
+import MovieList from "../movie-list/movie-list.jsx";
 import PropTypes from 'prop-types';
 
 const MainPage = (props) => {
-  const {titles} = props;
+  const {titles, onTitleClick} = props;
   return (
     <React.Fragment>
       <div className="visually-hidden">
@@ -127,9 +127,10 @@ const MainPage = (props) => {
           </ul>
 
           <div className="catalog__movies-list">
-            {titles.map(
-                (title, i) => <MovieCard title = {title} id={`${title}-${i}`} key={`${title}-${i}`}/>
-            )}
+            <MovieList
+              titles = {titles}
+              onTitleClick = {onTitleClick}
+            />
           </div>
 
           <div className="catalog__more">
@@ -155,7 +156,8 @@ const MainPage = (props) => {
 };
 
 MainPage.propTypes = {
-  titles: PropTypes.arrayOf(PropTypes.string)
+  titles: PropTypes.arrayOf(PropTypes.string).isRequired,
+  onTitleClick: PropTypes.func.isRequired
 };
 
 export default MainPage;
