@@ -10,7 +10,7 @@ const film = {
 
 Enzyme.configure({adapter: new Adapter()});
 
-it(`Title click`, () => {
+it(`Card hover`, () => {
 
   const movieCardHoverHandler = jest.fn();
   const app = shallow(<MovieCard
@@ -20,5 +20,5 @@ it(`Title click`, () => {
   />);
 
   app.simulate(`mouseenter`);
-  expect(titleClickHandler).toHaveBeenCalledTimes(1);
+  expect(movieCardHoverHandler).toHaveBeenCalledTimes(1);
 });

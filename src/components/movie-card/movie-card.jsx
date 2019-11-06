@@ -7,8 +7,9 @@ const MovieCard = (props) => {
   return (<article
     className="small-movie-card catalog__movies-card"
     id={id}
-    onMouseEnter={() => {onCardHover(film);}}
-    >
+    onMouseEnter={() => {
+      onCardHover(id);
+    }}>
     <div className="small-movie-card__image">
       <img src={film.img} alt={film.title} width="280" height="175" />
     </div>

@@ -4,6 +4,7 @@ exports[`MovieCard component renders correctly 1`] = `
 <article
   className="small-movie-card catalog__movies-card"
   id="0"
+  onMouseEnter={[Function]}
 >
   <div
     className="small-movie-card__image"
@@ -21,9 +22,8 @@ exports[`MovieCard component renders correctly 1`] = `
     <a
       className="small-movie-card__link"
       href="#"
-      onClick={[MockFunction]}
     >
-      title
+      Fantastic Beasts: The Crimes of Grindelwald
     </a>
   </h3>
 </article>
