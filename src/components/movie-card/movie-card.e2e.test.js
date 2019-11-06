@@ -3,18 +3,22 @@ import Enzyme, {shallow} from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 import MovieCard from "./movie-card.jsx";
 
+const film = {
+  title: `Fantastic Beasts: The Crimes of Grindelwald`,
+  img: `img/fantastic-beasts-the-crimes-of-grindelwald.jpg`
+};
+
 Enzyme.configure({adapter: new Adapter()});
 
 it(`Title click`, () => {
 
-  const titleClickHandler = jest.fn();
+  const movieCardHoverHandler = jest.fn();
   const app = shallow(<MovieCard
-    title={`title`}
+    film={film}
     id={`0`}
-    onTitleClick = {titleClickHandler}
+    onCardHover = {movieCardHoverHandler}
   />);
 
-  const link = app.find(`.small-movie-card__link`);
-  link.simulate(`click`);
+  app.simulate(`mouseenter`);
   expect(titleClickHandler).toHaveBeenCalledTimes(1);
 });

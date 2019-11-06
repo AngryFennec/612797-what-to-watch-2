@@ -4,12 +4,10 @@ import App from './components/app/app.jsx';
 import films from './mocks/films.js';
 
 const init = () => {
-  const onTitleClick = () => {};
 
   ReactDOM.render(
       <App
-        titles = {films}
-        onTitleClick = {onTitleClick}
+        films = {films}
       />,
       document.querySelector(`#root`)
   );

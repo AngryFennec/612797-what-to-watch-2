@@ -3,7 +3,7 @@ import MovieList from "../movie-list/movie-list.jsx";
 import PropTypes from 'prop-types';
 
 const MainPage = (props) => {
-  const {titles, onTitleClick} = props;
+  const {films} = props;
   return (
     <React.Fragment>
       <div className="visually-hidden">
@@ -128,8 +128,7 @@ const MainPage = (props) => {
 
           <div className="catalog__movies-list">
             <MovieList
-              titles = {titles}
-              onTitleClick = {onTitleClick}
+              films = {films}
             />
           </div>
 
@@ -156,8 +155,7 @@ const MainPage = (props) => {
 };
 
 MainPage.propTypes = {
-  titles: PropTypes.arrayOf(PropTypes.string).isRequired,
-  onTitleClick: PropTypes.func.isRequired
+  films: PropTypes.arrayOf(PropTypes.object).isRequired
 };
 
 export default MainPage;
