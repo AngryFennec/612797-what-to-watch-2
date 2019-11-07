@@ -1,15 +1,13 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import App from './components/app/app.jsx';
+import films from './mocks/films.js';
 
 const init = () => {
-  const titles = [`Fantastic Beasts`, `Bohemian Rhapsody`, `Macbeth`, `Yet another movie`];
-  const onTitleClick = () => {};
 
   ReactDOM.render(
       <App
-        titles = {titles}
-        onTitleClick = {onTitleClick}
+        films = {films}
       />,
       document.querySelector(`#root`)
   );
