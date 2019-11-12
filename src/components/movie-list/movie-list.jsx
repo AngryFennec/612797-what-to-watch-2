@@ -38,7 +38,7 @@ class MovieList extends React.PureComponent {
   _movieCardLeaveHandler() {
     this.setState({
       activeCard: -1,
-    }),
+    });
     clearTimeout(this.timer);
   }
 }

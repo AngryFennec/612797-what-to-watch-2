@@ -19,14 +19,14 @@ class VideoPlayer extends React.PureComponent {
     const {img, src} = this.props;
 
     return (
-        <video
-            ref={this._videoRef}
-            poster={img}
-            src={src}
-            width={200}
-            height={175}
-            muted
-          />
+      <video
+        ref={this._videoRef}
+        poster={img}
+        src={src}
+        width={200}
+        height={175}
+        muted
+      />
     );
   }
 
