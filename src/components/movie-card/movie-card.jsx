@@ -4,15 +4,17 @@ import VideoPlayer from '../video-player/video-player.jsx';
 
 const MovieCard = (props) => {
   const {film, id, onCardHover, onCardLeave, isPlaying} = props;
+  const cardMouseEnterHandler = () => {
+    onCardHover(id);
+  };
+  const cardMouseLeaveHandler = () => {
+    onCardLeave();
+  };
   return (<article
     className="small-movie-card catalog__movies-card"
     id={id}
-    onMouseEnter={() => {
-      onCardHover(id);
-    }}
-    onMouseLeave={() => {
-      onCardLeave();
-    }}
+    onMouseEnter={cardMouseEnterHandler}
+    onMouseLeave={cardMouseLeaveHandler}
   >
     <div className="small-movie-card__image">
       <VideoPlayer
@@ -29,7 +31,11 @@ const MovieCard = (props) => {
 
 
 MovieCard.propTypes = {
-  film: PropTypes.object.isRequired,
+  film: PropTypes.exact({
+    title: PropTypes.string,
+    img: PropTypes.string,
+    src: PropTypes.string
+  }).isRequired,
   id: PropTypes.number.isRequired,
   onCardHover: PropTypes.func.isRequired,
   onCardLeave: PropTypes.func.isRequired,

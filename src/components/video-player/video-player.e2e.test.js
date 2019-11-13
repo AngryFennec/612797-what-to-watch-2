@@ -5,7 +5,7 @@ import VideoPlayer from './video-player';
 
 Enzyme.configure({adapter: new Adapter()});
 
-it(`AudioPlayer correctly renders after relaunch`, () => {
+it(`VideoPlayer correctly renders after relaunch`, () => {
 
   const film = {
     title: `Fantastic Beasts: The Crimes of Grindelwald`,
@@ -14,12 +14,14 @@ it(`AudioPlayer correctly renders after relaunch`, () => {
   };
 
   VideoPlayer.prototype.componentDidUpdate = jest.fn();
-  const screen = mount(<VideoPlayer
-    img={film.img}
-    src={film.src}
-    isPlaying={false}
-  />);
+  const screen = (isPlaying) => {
+    return mount(<VideoPlayer
+      img={film.img}
+      src={film.src}
+      isPlaying={isPlaying}
+    />);
+  };
 
-  expect(screen.state().isPlaying).toBe(false);
-
+  expect(screen(false).state().isPlaying).toBe(false);
+  expect(screen(true).state().isPlaying).toBe(true);
 });

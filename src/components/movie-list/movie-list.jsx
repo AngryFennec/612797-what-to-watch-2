@@ -44,7 +44,11 @@ class MovieList extends React.PureComponent {
 }
 
 MovieList.propTypes = {
-  films: PropTypes.arrayOf(PropTypes.object).isRequired
+  films: PropTypes.arrayOf(PropTypes.exact({
+    title: PropTypes.string,
+    img: PropTypes.string,
+    src: PropTypes.string
+  })).isRequired
 };
 
 export default MovieList;
