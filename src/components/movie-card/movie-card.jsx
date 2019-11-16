@@ -1,17 +1,27 @@
 import React from "react";
 import PropTypes from 'prop-types';
+import VideoPlayer from '../video-player/video-player.jsx';
 
 const MovieCard = (props) => {
-  const {film, id, onCardHover} = props;
-
+  const {film, id, onCardHover, onCardLeave, isPlaying} = props;
+  const cardMouseEnterHandler = () => {
+    onCardHover(id);
+  };
+  const cardMouseLeaveHandler = () => {
+    onCardLeave();
+  };
   return (<article
     className="small-movie-card catalog__movies-card"
     id={id}
-    onMouseEnter={() => {
-      onCardHover(id);
-    }}>
+    onMouseEnter={cardMouseEnterHandler}
+    onMouseLeave={cardMouseLeaveHandler}
+  >
     <div className="small-movie-card__image">
-      <img src={film.img} alt={film.title} width="280" height="175" />
+      <VideoPlayer
+        img={film.img}
+        src={film.src}
+        isPlaying={isPlaying}
+      />
     </div>
     <h3 className="small-movie-card__title">
       <a className="small-movie-card__link" href="#">{film.title}</a>
@@ -21,9 +31,15 @@ const MovieCard = (props) => {
 
 
 MovieCard.propTypes = {
-  film: PropTypes.object.isRequired,
-  id: PropTypes.string.isRequired,
-  onCardHover: PropTypes.func.isRequired
+  film: PropTypes.exact({
+    title: PropTypes.string,
+    img: PropTypes.string,
+    src: PropTypes.string
+  }).isRequired,
+  id: PropTypes.number.isRequired,
+  onCardHover: PropTypes.func.isRequired,
+  onCardLeave: PropTypes.func.isRequired,
+  isPlaying: PropTypes.bool.isRequired
 };
 
 export default MovieCard;

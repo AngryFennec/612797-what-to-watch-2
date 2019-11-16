@@ -6,7 +6,7 @@ class MovieList extends React.PureComponent {
   constructor(props) {
     super(props);
     this.state = {
-      activeCard: ``,
+      activeCard: -1,
     };
   }
 
@@ -19,21 +19,36 @@ class MovieList extends React.PureComponent {
       films.map(
           (film, i) => < MovieCard
             film = {film}
-            id = {`${film.title}-${i}`}
+            id = {i}
             key = {`${film.title}-${i}`}
             onCardHover = {this._movieCardHoverHandler.bind(this)}
+            onCardLeave = {this._movieCardLeaveHandler.bind(this)}
+            isPlaying={i === this.state.activeCard}
           />)
     } </React.Fragment>);
   }
+
   _movieCardHoverHandler(id) {
+
+    this.timer = setTimeout(() => {
+      this.setState({activeCard: id});
+    }, 1000);
+  }
+
+  _movieCardLeaveHandler() {
     this.setState({
-      activeCard: id
+      activeCard: -1,
     });
+    clearTimeout(this.timer);
   }
 }
 
 MovieList.propTypes = {
-  films: PropTypes.arrayOf(PropTypes.object).isRequired
+  films: PropTypes.arrayOf(PropTypes.exact({
+    title: PropTypes.string,
+    img: PropTypes.string,
+    src: PropTypes.string
+  })).isRequired
 };
 
 export default MovieList;
