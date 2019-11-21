@@ -1,9 +1,15 @@
-//  import films from "./mocks/films.js";
+//  import films as allFilms from "./mocks/films.js";
 
 const initialState = {
   genre: `All genres`,
-  filteredFilms: []
+  filteredFilms: [],
 };
+
+const filterFilms = (films, genre) => {
+  const res = genre === `All genres` ? films : films.filter((film) => film.genre === genre);
+  console.log(res);
+  return res;
+}
 
 const ActionCreator = {
   applyGenreFilter: (genre) => ({
@@ -11,9 +17,9 @@ const ActionCreator = {
     payload: genre
   }),
 
-  getFilterefFilms: (films, genre) => ({
+  getFilteredFilms: (films, genre) => ({
     type: `FILTER_FILMS`,
-    payload: genre === `All genres` ? films : films.filter((film) => film.genre === genre)
+    payload: filterFilms(films, genre)
   })
 };
 
@@ -24,7 +30,6 @@ const reducer = (state = initialState, action) => {
         genre: action.payload
       });
     case `FILTER_FILMS`:
-    console.log(action.payload);
       return Object.assign({}, state, {
         filteredFilms: action.payload
       });

@@ -13,7 +13,8 @@ App.propTypes = {
   films: PropTypes.arrayOf(PropTypes.exact({
     title: PropTypes.string,
     img: PropTypes.string,
-    src: PropTypes.string
+    src: PropTypes.string,
+    genre: PropTypes.string
   })).isRequired
 };
 

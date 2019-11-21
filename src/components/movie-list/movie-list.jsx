@@ -1,10 +1,12 @@
 import React from "react";
 import MovieCard from "../movie-card/movie-card.jsx";
 import PropTypes from 'prop-types';
+import {connect} from 'react-redux';
 
 class MovieList extends React.PureComponent {
   constructor(props) {
     super(props);
+
     this.state = {
       activeCard: -1,
     };
@@ -14,7 +16,7 @@ class MovieList extends React.PureComponent {
     const {
       films
     } = this.props;
-
+    console.log(films);
     return (<React.Fragment > {
       films.map(
           (film, i) => < MovieCard
@@ -47,8 +49,10 @@ MovieList.propTypes = {
   films: PropTypes.arrayOf(PropTypes.exact({
     title: PropTypes.string,
     img: PropTypes.string,
-    src: PropTypes.string
+    src: PropTypes.string,
+    genre: PropTypes.string,
   })).isRequired
 };
+
 
 export default MovieList;

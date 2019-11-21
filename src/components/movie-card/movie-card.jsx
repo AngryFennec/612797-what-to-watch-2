@@ -34,7 +34,8 @@ MovieCard.propTypes = {
   film: PropTypes.exact({
     title: PropTypes.string,
     img: PropTypes.string,
-    src: PropTypes.string
+    src: PropTypes.string,
+    genre: PropTypes.string,
   }).isRequired,
   id: PropTypes.number.isRequired,
   onCardHover: PropTypes.func.isRequired,
