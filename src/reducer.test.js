@@ -1,9 +1,81 @@
 import {
   ActionCreator,
   reducer,
+  filterFilms
 } from "./reducer.js";
 
+const mockFilms = [
+  {
+    title: ``,
+    img: ``,
+    src: ``,
+    genre: `action`
+  },
+  {
+    title: `y`,
+    img: ``,
+    src: ``,
+    genre: `shooter`
+  }
+];
+
+const films = [
+  {
+    title: `Fantastic Beasts: The Crimes of Grindelwald`,
+    img: `img/fantastic-beasts-the-crimes-of-grindelwald.jpg`,
+    src: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`,
+    genre: `action`
+  },
+  {
+    title: `Bohemian Rhapsody`,
+    img: `img/bohemian-rhapsody.jpg`,
+    src: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`,
+    genre: `shooter`
+  },
+  {
+    title: `Macbeth`,
+    img: `img/macbeth.jpg`,
+    src: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`,
+    genre: `drama`
+  },
+  {
+    title: `Aviator`,
+    img: `img/aviator.jpg`,
+    src: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`,
+    genre: `horror`
+  },
+  {
+    title: `We need to talk about Kevin`,
+    img: `img/we-need-to-talk-about-kevin.jpg`,
+    src: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`,
+    genre: `comedy`
+  },
+];
+
+describe(`Filter work correctly`, () => {
+
+  it(`All genres filter is correct`, () => {
+    expect(filterFilms(mockFilms, `All genres`)).toEqual(mockFilms);
+  });
+
+  it(`Some genre filter is correct`, () => {
+    expect(filterFilms(mockFilms, `shooter`)).toEqual([
+      {
+        title: `y`,
+        img: ``,
+        src: ``,
+        genre: `shooter`
+      }
+    ]);
+  });
+});
+
 describe(`Action creators work correctly`, () => {
+
+  it(`Action creator for get all films returns correct action`, () => {
+    expect(ActionCreator.getAllFilms()).toEqual(films);
+  });
+
   it(`Action creator for apply filter returns correct action`, () => {
     expect(ActionCreator.applyGenreFilter(`some-genre`)).toEqual({
       type: `CHANGE_FILTER`,
@@ -12,58 +84,19 @@ describe(`Action creators work correctly`, () => {
   });
 
   it(`Action creator for filter films returns action with All genres payload if genre is All genres`, () => {
-    expect(ActionCreator.getFilterefFilms([
-      {
-        title: ``,
-        img: ``,
-        src: ``,
-        genre: `action`
-      },
-      {
-        title: `y`,
-        img: ``,
-        src: ``,
-        genre: `shooter`
-      }
-    ], `All genres`)).toEqual({
+    expect(ActionCreator.getFilteredFilms(`All genres`)).toEqual({
       type: `FILTER_FILMS`,
-      payload: [
-        {
-          title: ``,
-          img: ``,
-          src: ``,
-          genre: `action`
-        },
-        {
-          title: `y`,
-          img: ``,
-          src: ``,
-          genre: `shooter`
-        }
-      ],
+      payload: films,
     });
   });
   it(`Action creator for filter films returns action with selected genre payload if genre is action`, () => {
-    expect(ActionCreator.getFilterefFilms([
-      {
-        title: ``,
-        img: ``,
-        src: ``,
-        genre: `action`
-      },
-      {
-        title: `y`,
-        img: ``,
-        src: ``,
-        genre: `shooter`
-      }
-    ], `action`)).toEqual({
+    expect(ActionCreator.getFilteredFilms(`action`)).toEqual({
       type: `FILTER_FILMS`,
       payload: [
         {
-          title: ``,
-          img: ``,
-          src: ``,
+          title: `Fantastic Beasts: The Crimes of Grindelwald`,
+          img: `img/fantastic-beasts-the-crimes-of-grindelwald.jpg`,
+          src: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`,
           genre: `action`
         }
       ],
@@ -90,39 +123,6 @@ describe(`Reducer works correctly`, () => {
     })).toEqual({
       genre: `some-genre`,
       filteredFilms: []
-    });
-  });
-
-  it(`Reducer should filter films by a given genre`, () => {
-    expect(reducer({
-      filteredFilms: [
-        {
-          title: ``,
-          img: ``,
-          src: ``,
-          genre: `action`
-        },
-        {
-          title: `y`,
-          img: ``,
-          src: ``,
-          genre: `shooter`
-        }
-      ],
-      genre: `All genres`,
-    }, {
-      type: `FILTER_FILMS`,
-      payload: `shooter`,
-    })).toMatchObject({
-      genre: `All genres`,
-      filteredFilms: [
-        {
-          title: `y`,
-          img: ``,
-          src: ``,
-          genre: `shooter`
-        }
-      ]
     });
   });
 });

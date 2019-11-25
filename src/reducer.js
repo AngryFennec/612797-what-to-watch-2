@@ -5,10 +5,10 @@ const initialState = {
   filteredFilms: [],
 };
 
-const filterFilms = (films, genre) => {
+const filterFilms = (allFilms, genre) => {
 
-  return genre === `All genres` ? films : films.filter((film) => film.genre === genre);
-}
+  return genre === `All genres` ? allFilms : allFilms.filter((film) => film.genre === genre);
+};
 
 const ActionCreator = {
   getAllFilms: () => {
@@ -18,7 +18,7 @@ const ActionCreator = {
     return {
       type: `CHANGE_FILTER`,
       payload: genre
-    }
+    };
   },
 
   getFilteredFilms: (genre) => {
@@ -26,7 +26,7 @@ const ActionCreator = {
     return {
       type: `FILTER_FILMS`,
       payload: filterFilms(allFilms, genre)
-    }
+    };
   }
 };
 

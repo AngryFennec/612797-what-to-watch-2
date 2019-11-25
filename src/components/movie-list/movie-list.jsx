@@ -1,7 +1,6 @@
 import React from "react";
 import MovieCard from "../movie-card/movie-card.jsx";
 import PropTypes from 'prop-types';
-import {connect} from 'react-redux';
 
 class MovieList extends React.PureComponent {
   constructor(props) {

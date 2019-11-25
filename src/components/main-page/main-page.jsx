@@ -6,7 +6,7 @@ import {ActionCreator, filterFilms} from "../../reducer.js";
 import GenreList from "../genre-list/genre-list.jsx";
 
 const MainPage = (props) => {
-  const {films, activeGenre, onGenreClick, getFlteredFilms} = props;
+  const {films, activeGenre, onGenreClick} = props;
   return (
     <React.Fragment>
       <div className="visually-hidden">
@@ -153,11 +153,6 @@ const mapDispatchToProps = (dispatch) => ({
     dispatch(ActionCreator.applyGenreFilter(genre));
     dispatch(ActionCreator.getFilteredFilms(genre));
   },
-/*
-  getFilteredFilms: (films, genre) => {
-    dispatch(ActionCreator.getFilteredFilms(films, genre));
-  }
-*/
 });
 
 MainPage.propTypes = {
