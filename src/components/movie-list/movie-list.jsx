@@ -16,7 +16,6 @@ class MovieList extends React.PureComponent {
     const {
       films
     } = this.props;
-    console.log(films);
     return (<React.Fragment > {
       films.map(
           (film, i) => < MovieCard

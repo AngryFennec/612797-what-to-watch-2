@@ -7,7 +7,7 @@ const GenreList = (props) => {
         <li
           key={genre}
           className={`catalog__genres-item ${genre === activeGenre ? `catalog__genres-item--active` : ``}`}>
-          <a href="#" className="catalog__genres-link" onClick={(evt) => onGenreClick(evt, films, genre)}>{genre}</a>
+          <a href="#" className="catalog__genres-link" onClick={(evt) => onGenreClick(genre)}>{genre}</a>
         </li>
       )}
     </ul>

@@ -1,4 +1,4 @@
-//  import films as allFilms from "./mocks/films.js";
+import films from "./mocks/films.js";
 
 const initialState = {
   genre: `All genres`,
@@ -6,21 +6,28 @@ const initialState = {
 };
 
 const filterFilms = (films, genre) => {
-  const res = genre === `All genres` ? films : films.filter((film) => film.genre === genre);
-  console.log(res);
-  return res;
+
+  return genre === `All genres` ? films : films.filter((film) => film.genre === genre);
 }
 
 const ActionCreator = {
-  applyGenreFilter: (genre) => ({
-    type: `CHANGE_FILTER`,
-    payload: genre
-  }),
+  getAllFilms: () => {
+    return films;
+  },
+  applyGenreFilter: (genre) => {
+    return {
+      type: `CHANGE_FILTER`,
+      payload: genre
+    }
+  },
 
-  getFilteredFilms: (films, genre) => ({
-    type: `FILTER_FILMS`,
-    payload: filterFilms(films, genre)
-  })
+  getFilteredFilms: (genre) => {
+    const allFilms = ActionCreator.getAllFilms();
+    return {
+      type: `FILTER_FILMS`,
+      payload: filterFilms(allFilms, genre)
+    }
+  }
 };
 
 const reducer = (state = initialState, action) => {
@@ -38,4 +45,4 @@ const reducer = (state = initialState, action) => {
   return state;
 };
 
-export {ActionCreator, reducer};
+export {ActionCreator, reducer, filterFilms};

@@ -2,7 +2,7 @@ import React from "react";
 import MovieList from "../movie-list/movie-list.jsx";
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
-import {ActionCreator} from "../../reducer.js";
+import {ActionCreator, filterFilms} from "../../reducer.js";
 import GenreList from "../genre-list/genre-list.jsx";
 
 const MainPage = (props) => {
@@ -107,7 +107,7 @@ const MainPage = (props) => {
 
           <div className="catalog__movies-list">
             <MovieList
-              films = {activeGenre === `All genres` ? films : getFilteredFilms}
+              films = {activeGenre === `All genres` ? films : filterFilms(films, activeGenre)}
             />
           </div>
 
@@ -149,10 +149,9 @@ const mapStateToProps = (state, ownProps) => Object.assign({}, ownProps, {
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  onGenreClick: (evt, films, genre) => {
-    evt.preventDefault();
+  onGenreClick: (genre) => {
     dispatch(ActionCreator.applyGenreFilter(genre));
-    dispatch(ActionCreator.getFilteredFilms(films, genre));
+    dispatch(ActionCreator.getFilteredFilms(genre));
   },
 /*
   getFilteredFilms: (films, genre) => {
