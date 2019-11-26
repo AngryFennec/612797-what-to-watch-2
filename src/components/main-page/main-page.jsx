@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import {ActionCreator, filterFilms} from "../../reducer.js";
 import GenreList from "../genre-list/genre-list.jsx";
+import {getAllGenres} from "../../helpers/helpers.js";
 
 const MainPage = (props) => {
   const {films, activeGenre, onGenreClick} = props;
@@ -131,16 +132,6 @@ const MainPage = (props) => {
         </footer>
       </div>
     </React.Fragment>);
-};
-
-const getAllGenres = (allFilms) => {
-  const allGenres = [`All genres`];
-  allFilms.forEach((film) => {
-    if (!allGenres.includes(film.genre)) {
-      allGenres.push(film.genre);
-    }
-  });
-  return allGenres;
 };
 
 const mapStateToProps = (state, ownProps) => Object.assign({}, ownProps, {

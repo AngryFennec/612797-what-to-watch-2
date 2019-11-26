@@ -85,13 +85,13 @@ describe(`Action creators work correctly`, () => {
 
   it(`Action creator for filter films returns action with All genres payload if genre is All genres`, () => {
     expect(ActionCreator.getFilteredFilms(`All genres`)).toEqual({
-      type: `FILTER_FILMS`,
+      type: `GET_FILTERED_FILMS`,
       payload: films,
     });
   });
   it(`Action creator for filter films returns action with selected genre payload if genre is action`, () => {
     expect(ActionCreator.getFilteredFilms(`action`)).toEqual({
-      type: `FILTER_FILMS`,
+      type: `GET_FILTERED_FILMS`,
       payload: [
         {
           title: `Fantastic Beasts: The Crimes of Grindelwald`,

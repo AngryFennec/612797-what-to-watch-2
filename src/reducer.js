@@ -24,7 +24,7 @@ const ActionCreator = {
   getFilteredFilms: (genre) => {
     const allFilms = ActionCreator.getAllFilms();
     return {
-      type: `FILTER_FILMS`,
+      type: `GET_FILTERED_FILMS`,
       payload: filterFilms(allFilms, genre)
     };
   }
@@ -36,7 +36,7 @@ const reducer = (state = initialState, action) => {
       return Object.assign({}, state, {
         genre: action.payload
       });
-    case `FILTER_FILMS`:
+    case `GET_FILTERED_FILMS`:
       return Object.assign({}, state, {
         filteredFilms: action.payload
       });
