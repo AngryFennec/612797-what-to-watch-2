@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 class MovieList extends React.PureComponent {
   constructor(props) {
     super(props);
+
     this.state = {
       activeCard: -1,
     };
@@ -14,7 +15,6 @@ class MovieList extends React.PureComponent {
     const {
       films
     } = this.props;
-
     return (<React.Fragment > {
       films.map(
           (film, i) => < MovieCard
@@ -47,8 +47,10 @@ MovieList.propTypes = {
   films: PropTypes.arrayOf(PropTypes.exact({
     title: PropTypes.string,
     img: PropTypes.string,
-    src: PropTypes.string
+    src: PropTypes.string,
+    genre: PropTypes.string,
   })).isRequired
 };
+
 
 export default MovieList;
