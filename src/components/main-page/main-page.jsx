@@ -5,6 +5,9 @@ import {connect} from 'react-redux';
 import {ActionCreator, filterFilms} from "../../reducer.js";
 import GenreList from "../genre-list/genre-list.jsx";
 import {getAllGenres} from "../../helpers/helpers.js";
+import withActiveItem from "../../hocs/with-active-item.js"
+
+const MovieListWrapper = withActiveItem(MovieList);
 
 const MainPage = (props) => {
   const {films, activeGenre, onGenreClick} = props;
@@ -107,7 +110,7 @@ const MainPage = (props) => {
           </React.Fragment>
 
           <div className="catalog__movies-list">
-            <MovieList
+            <MovieListWrapper
               films = {activeGenre === `All genres` ? films : filterFilms(films, activeGenre)}
             />
           </div>

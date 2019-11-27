@@ -1,9 +1,14 @@
 import React from "react";
 import PropTypes from 'prop-types';
-import withActiveItem from "../../hocs/with-active-item.js";
 
-const GenreList = (props) => {
-  const {genres, activeGenre, onGenreClick} = props;
+class GenreList2 extends React.PureComponent {
+  constructor(props) {
+   super(props);
+ }
+
+
+render() {
+  const {genres, activeGenre, onChangeActiveItem} = props;
   return (
     <ul className="catalog__genres-list">
       {genres.map((genre) =>
@@ -12,19 +17,21 @@ const GenreList = (props) => {
           className={`catalog__genres-item ${genre === activeGenre ? `catalog__genres-item--active` : ``}`}>
           <a href="#" className="catalog__genres-link" onClick={(evt) => {
             evt.preventDefault();
-            onGenreClick(genre);
+            onChangeActiveItem(genre);
           }
           }>{genre}</a>
         </li>
       )}
     </ul>
   );
+}
+
 };
 
-GenreList.propTypes = {
+GenreList2.propTypes = {
   genres: PropTypes.arrayOf(PropTypes.string).isRequired,
   activeGenre: PropTypes.string.isRequired,
-  onGenreClick: PropTypes.func.isRequired,
+  onChangeActiveItem: PropTypes.func.isRequired,
 };
 
-export default withActiveItem(GenreList);
+export default GenreList2;

@@ -13,7 +13,8 @@ class MovieList extends React.PureComponent {
 
   render() {
     const {
-      films
+      films,
+      onChangeActiveItem
     } = this.props;
     return (<React.Fragment > {
       films.map(
@@ -24,21 +25,20 @@ class MovieList extends React.PureComponent {
             onCardHover = {this._movieCardHoverHandler.bind(this)}
             onCardLeave = {this._movieCardLeaveHandler.bind(this)}
             isPlaying={i === this.state.activeCard}
+            changeActiveItemHandler={onChangeActiveItem}
           />)
     } </React.Fragment>);
   }
 
-  _movieCardHoverHandler(id) {
 
+  _movieCardHoverHandler(id, onChangeActiveItem) {
     this.timer = setTimeout(() => {
-      this.setState({activeCard: id});
+      onChangeActiveItem(id);
     }, 1000);
   }
 
-  _movieCardLeaveHandler() {
-    this.setState({
-      activeCard: -1,
-    });
+  _movieCardLeaveHandler(onChangeActiveItem) {
+    onChangeActiveItem(-1);
     clearTimeout(this.timer);
   }
 }
@@ -49,7 +49,8 @@ MovieList.propTypes = {
     img: PropTypes.string,
     src: PropTypes.string,
     genre: PropTypes.string,
-  })).isRequired
+  })).isRequired,
+  onChangeActiveItem: PropTypes.func.isRequired
 };
 
 
