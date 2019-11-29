@@ -21,6 +21,7 @@ it(`Card hover`, () => {
     onCardHover = {movieCardHoverHandler}
     onCardLeave = {movieCardLeaveHandler}
     isPlaying = {true}
+    changeActiveItemHandler = {jest.fn()}
   />);
 
   app.simulate(`mouseenter`);

@@ -16,6 +16,7 @@ it(`MovieCard component renders correctly`, () => {
       onCardHover = {jest.fn()}
       onCardLeave = {jest.fn()}
       isPlaying = {true}
+      changeActiveItemHandler = {jest.fn()}
     />,
     {
       createNodeMock: () => {

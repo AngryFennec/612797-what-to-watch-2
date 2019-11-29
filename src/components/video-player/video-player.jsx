@@ -23,7 +23,7 @@ class VideoPlayer extends React.PureComponent {
         ref={this._videoRef}
         poster={img}
         src={src}
-        width={200}
+        width={280}
         height={175}
         muted
       />
