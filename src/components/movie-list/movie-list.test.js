@@ -15,6 +15,8 @@ it(`MovieList component renders correctly`, () => {
   const tree = renderer
     .create(<MovieList
       films={films}
+      activeItem={-1}
+      onChangeActiveItem={jest.fn()}
     />,
     {
       createNodeMock: () => {

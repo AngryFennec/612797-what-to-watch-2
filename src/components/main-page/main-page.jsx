@@ -109,6 +109,7 @@ const MainPage = (props) => {
           <div className="catalog__movies-list">
             <MovieList
               films = {activeGenre === `All genres` ? films : filterFilms(films, activeGenre)}
+              activeItem = {-1}
             />
           </div>
 

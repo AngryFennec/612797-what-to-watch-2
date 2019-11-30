@@ -1,47 +1,41 @@
 import React from "react";
 import MovieCard from "../movie-card/movie-card.jsx";
 import PropTypes from 'prop-types';
+import withActiveItem from "../../hocs/with-active-item.js";
 
-class MovieList extends React.PureComponent {
-  constructor(props) {
-    super(props);
+const MovieList = (props) => {
+  const {
+    films,
+    activeItem,
+    onChangeActiveItem
+  } = props;
 
-    this.state = {
-      activeCard: -1,
-    };
-  }
+  let timer;
 
-  render() {
-    const {
-      films
-    } = this.props;
-    return (<React.Fragment > {
-      films.map(
-          (film, i) => < MovieCard
-            film = {film}
-            id = {i}
-            key = {`${film.title}-${i}`}
-            onCardHover = {this._movieCardHoverHandler.bind(this)}
-            onCardLeave = {this._movieCardLeaveHandler.bind(this)}
-            isPlaying={i === this.state.activeCard}
-          />)
-    } </React.Fragment>);
-  }
-
-  _movieCardHoverHandler(id) {
-
-    this.timer = setTimeout(() => {
-      this.setState({activeCard: id});
+  const movieCardHoverHandler = (id) => {
+    timer = setTimeout(() => {
+      onChangeActiveItem(id);
     }, 1000);
-  }
+  };
 
-  _movieCardLeaveHandler() {
-    this.setState({
-      activeCard: -1,
-    });
-    clearTimeout(this.timer);
-  }
-}
+  const movieCardLeaveHandler = () => {
+    onChangeActiveItem(-1);
+    clearTimeout(timer);
+  };
+
+  return (<React.Fragment > {
+    films.map(
+        (film, i) => < MovieCard
+          film = {film}
+          id = {i}
+          key = {`${film.title}-${i}`}
+          onCardHover = {movieCardHoverHandler}
+          onCardLeave = {movieCardLeaveHandler}
+          isPlaying={i === activeItem}
+          changeActiveItemHandler={onChangeActiveItem}
+        />)
+  } </React.Fragment>);
+};
 
 MovieList.propTypes = {
   films: PropTypes.arrayOf(PropTypes.exact({
@@ -49,8 +43,10 @@ MovieList.propTypes = {
     img: PropTypes.string,
     src: PropTypes.string,
     genre: PropTypes.string,
-  })).isRequired
+  })).isRequired,
+  activeItem: PropTypes.number.isRequired,
+  onChangeActiveItem: PropTypes.func.isRequired
 };
 
 
-export default MovieList;
+export default withActiveItem(MovieList);

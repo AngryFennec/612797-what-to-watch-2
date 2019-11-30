@@ -3,12 +3,12 @@ import PropTypes from 'prop-types';
 import VideoPlayer from '../video-player/video-player.jsx';
 
 const MovieCard = (props) => {
-  const {film, id, onCardHover, onCardLeave, isPlaying} = props;
+  const {film, id, onCardHover, onCardLeave, isPlaying, changeActiveItemHandler} = props;
   const cardMouseEnterHandler = () => {
-    onCardHover(id);
+    onCardHover(id, changeActiveItemHandler);
   };
   const cardMouseLeaveHandler = () => {
-    onCardLeave();
+    onCardLeave(changeActiveItemHandler);
   };
   return (<article
     className="small-movie-card catalog__movies-card"
@@ -40,7 +40,8 @@ MovieCard.propTypes = {
   id: PropTypes.number.isRequired,
   onCardHover: PropTypes.func.isRequired,
   onCardLeave: PropTypes.func.isRequired,
-  isPlaying: PropTypes.bool.isRequired
+  isPlaying: PropTypes.bool.isRequired,
+  changeActiveItemHandler: PropTypes.func.isRequired,
 };
 
 export default MovieCard;
