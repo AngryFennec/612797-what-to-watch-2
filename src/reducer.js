@@ -5,6 +5,15 @@ const initialState = {
   filteredFilms: [],
 };
 
+const Operation = {
+  loadFilms: () => (dispatch, _getState, api) => {
+    return api.get(`/films`)
+      .then((response) => {
+        dispatch(ActionCreator.loadFilms(response.data));
+      });
+  },
+};
+
 const filterFilms = (allFilms, genre) => {
 
   return genre === `All genres` ? allFilms : allFilms.filter((film) => film.genre === genre);
@@ -27,7 +36,14 @@ const ActionCreator = {
       type: `GET_FILTERED_FILMS`,
       payload: filterFilms(allFilms, genre)
     };
-  }
+  },
+
+  loadFilms: () => {
+    return {
+      type: `LOAD_FILMS`,
+      payload: films
+    };
+  },
 };
 
 const reducer = (state = initialState, action) => {
@@ -40,9 +56,13 @@ const reducer = (state = initialState, action) => {
       return Object.assign({}, state, {
         filteredFilms: action.payload
       });
+    case `LOAD_FILMS`: return Object.assign({}, state, {
+      films: action.payload
+    });
+
   }
 
   return state;
 };
 
-export {ActionCreator, reducer, filterFilms};
+export {ActionCreator, Operation, reducer, filterFilms};
