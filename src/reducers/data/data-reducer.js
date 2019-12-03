@@ -1,8 +1,7 @@
-import films from "./mocks/films.js";
-
 const initialState = {
   genre: `All genres`,
   filteredFilms: [],
+  allFilms: []
 };
 
 const Operation = {
@@ -20,9 +19,6 @@ const filterFilms = (allFilms, genre) => {
 };
 
 const ActionCreator = {
-  getAllFilms: () => {
-    return films;
-  },
   applyGenreFilter: (genre) => {
     return {
       type: `CHANGE_FILTER`,
@@ -30,15 +26,14 @@ const ActionCreator = {
     };
   },
 
-  getFilteredFilms: (genre) => {
-    const allFilms = ActionCreator.getAllFilms();
+  getFilteredFilms: (films, genre = `All genres`) => {
     return {
       type: `GET_FILTERED_FILMS`,
-      payload: filterFilms(allFilms, genre)
+      payload: filterFilms(films, genre)
     };
   },
 
-  loadFilms: () => {
+  loadFilms: (films) => {
     return {
       type: `LOAD_FILMS`,
       payload: films
@@ -46,8 +41,9 @@ const ActionCreator = {
   },
 };
 
-const reducer = (state = initialState, action) => {
+const dataReducer = (state = initialState, action) => {
   switch (action.type) {
+
     case `CHANGE_FILTER`:
       return Object.assign({}, state, {
         genre: action.payload
@@ -56,8 +52,9 @@ const reducer = (state = initialState, action) => {
       return Object.assign({}, state, {
         filteredFilms: action.payload
       });
-    case `LOAD_FILMS`: return Object.assign({}, state, {
-      films: action.payload
+    case `LOAD_FILMS`:
+    return Object.assign({}, state, {
+      allFilms: action.payload
     });
 
   }
@@ -65,4 +62,4 @@ const reducer = (state = initialState, action) => {
   return state;
 };
 
-export {ActionCreator, Operation, reducer, filterFilms};
+export {ActionCreator, Operation, dataReducer, filterFilms};

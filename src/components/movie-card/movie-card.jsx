@@ -18,26 +18,19 @@ const MovieCard = (props) => {
   >
     <div className="small-movie-card__image">
       <VideoPlayer
-        img={film.img}
-        src={film.src}
+        film={film}
         isPlaying={isPlaying}
       />
     </div>
     <h3 className="small-movie-card__title">
-      <a className="small-movie-card__link" href="#">{film.title}</a>
+      <a className="small-movie-card__link" href="#">{film.name}</a>
     </h3>
   </article>);
 };
 
 
 MovieCard.propTypes = {
-  film: PropTypes.exact({
-    title: PropTypes.string,
-    img: PropTypes.string,
-    src: PropTypes.string,
-    genre: PropTypes.string,
-  }).isRequired,
-  id: PropTypes.number.isRequired,
+  film: PropTypes.object.isRequired,
   onCardHover: PropTypes.func.isRequired,
   onCardLeave: PropTypes.func.isRequired,
   isPlaying: PropTypes.bool.isRequired,

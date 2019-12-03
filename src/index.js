@@ -4,12 +4,13 @@ import {Provider} from "react-redux";
 import {createStore, applyMiddleware, compose} from "redux";
 import App from './components/app/app.jsx';
 import films from './mocks/films.js';
-import {reducer, Operation} from "./reducer.js";
+import reducer from "./reducers/reducer.js";
+import {Operation} from "./reducers/data/data-reducer.js";
 import thunk from 'redux-thunk';
 import {createAPI} from './api.js';
 
 
-const init = (mockFilms) => {
+const init = () => {
 
   const api = createAPI((...args) => store.dispatch(...args));
   const store = createStore(
@@ -24,11 +25,10 @@ const init = (mockFilms) => {
   ReactDOM.render(
       <Provider store={store}>
         <App
-          films={mockFilms}
         />
       </Provider>,
       document.querySelector(`#root`)
   );
 };
 
-init(films);
+init();

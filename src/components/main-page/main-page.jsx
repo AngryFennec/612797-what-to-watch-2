@@ -2,12 +2,13 @@ import React from "react";
 import MovieList from "../movie-list/movie-list.jsx";
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
-import {ActionCreator, filterFilms} from "../../reducer.js";
+import {ActionCreator, filterFilms, dataReducer} from "../../reducers/data/data-reducer.js";
 import GenreList from "../genre-list/genre-list.jsx";
 import {getAllGenres} from "../../helpers/helpers.js";
+import getFilmList from "../../selectors/get-film-list.js";
 
 const MainPage = (props) => {
-  const {films, activeGenre, onGenreClick} = props;
+  const {allFilms, activeGenre, onGenreClick} = props;
   return (
     <React.Fragment>
       <div className="visually-hidden">
@@ -99,8 +100,8 @@ const MainPage = (props) => {
 
           <React.Fragment>
             <GenreList
-              genres={getAllGenres(films)}
-              films={films}
+              genres={getAllGenres(allFilms)}
+              films={allFilms}
               activeGenre={activeGenre}
               onGenreClick={onGenreClick}
             />
@@ -108,7 +109,7 @@ const MainPage = (props) => {
 
           <div className="catalog__movies-list">
             <MovieList
-              films = {activeGenre === `All genres` ? films : filterFilms(films, activeGenre)}
+              films = {activeGenre === `All genres` ? allFilms : filterFilms(allFilms, activeGenre)}
               activeItem = {-1}
             />
           </div>
@@ -136,8 +137,9 @@ const MainPage = (props) => {
 };
 
 const mapStateToProps = (state, ownProps) => Object.assign({}, ownProps, {
-  activeGenre: state.genre,
-  filteredFilms: state.filteredFilms
+  activeGenre: state.DATA.genre,
+  filteredFilms: getFilmList(state),
+  allFilms: state.DATA.allFilms
 });
 
 const mapDispatchToProps = (dispatch) => ({
@@ -148,12 +150,7 @@ const mapDispatchToProps = (dispatch) => ({
 });
 
 MainPage.propTypes = {
-  films: PropTypes.arrayOf(PropTypes.exact({
-    title: PropTypes.string,
-    img: PropTypes.string,
-    src: PropTypes.string,
-    genre: PropTypes.string,
-  })).isRequired,
+  allFilms: PropTypes.array.isRequired,
   activeGenre: PropTypes.string.isRequired,
   onGenreClick: PropTypes.func.isRequired,
 

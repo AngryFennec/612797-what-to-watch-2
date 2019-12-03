@@ -16,13 +16,13 @@ class VideoPlayer extends React.PureComponent {
   }
 
   render() {
-    const {img, src} = this.props;
+    const {film} = this.props;
 
     return (
       <video
         ref={this._videoRef}
-        poster={img}
-        src={src}
+        poster={film.preview_image}
+        src={film.preview_video_link}
         width={280}
         height={175}
         muted
@@ -31,11 +31,11 @@ class VideoPlayer extends React.PureComponent {
   }
 
   componentDidMount() {
-    const {src, img} = this.props;
+    const {film} = this.props;
     const video = this._videoRef.current;
 
-    video.src = src;
-    video.poster = img;
+    video.src = film.preview_video_link;
+    video.poster = film.preview_image;
   }
 
   componentDidUpdate() {
@@ -53,14 +53,13 @@ class VideoPlayer extends React.PureComponent {
 
     video.oncanplaythrough = null;
     video.src = ``;
-    video.img = ``;
+    video.poster = ``;
   }
 }
 
 VideoPlayer.propTypes = {
   isPlaying: PropTypes.bool.isRequired,
-  src: PropTypes.string.isRequired,
-  img: PropTypes.string.isRequired
+  film: PropTypes.object.isRequired
 };
 
 export default VideoPlayer;

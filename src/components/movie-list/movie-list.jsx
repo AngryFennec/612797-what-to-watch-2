@@ -28,7 +28,7 @@ const MovieList = (props) => {
         (film, i) => < MovieCard
           film = {film}
           id = {i}
-          key = {`${film.title}-${i}`}
+          key = {`${film.name}-${i}`}
           onCardHover = {movieCardHoverHandler}
           onCardLeave = {movieCardLeaveHandler}
           isPlaying={i === activeItem}
@@ -38,12 +38,7 @@ const MovieList = (props) => {
 };
 
 MovieList.propTypes = {
-  films: PropTypes.arrayOf(PropTypes.exact({
-    title: PropTypes.string,
-    img: PropTypes.string,
-    src: PropTypes.string,
-    genre: PropTypes.string,
-  })).isRequired,
+  films: PropTypes.array.isRequired,
   activeItem: PropTypes.number.isRequired,
   onChangeActiveItem: PropTypes.func.isRequired
 };
