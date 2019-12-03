@@ -34,6 +34,7 @@ MovieCard.propTypes = {
   onCardHover: PropTypes.func.isRequired,
   onCardLeave: PropTypes.func.isRequired,
   isPlaying: PropTypes.bool.isRequired,
+  id: PropTypes.number.isRequired,
   changeActiveItemHandler: PropTypes.func.isRequired,
 };
 

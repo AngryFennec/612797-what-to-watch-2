@@ -53,9 +53,9 @@ const dataReducer = (state = initialState, action) => {
         filteredFilms: action.payload
       });
     case `LOAD_FILMS`:
-    return Object.assign({}, state, {
-      allFilms: action.payload
-    });
+      return Object.assign({}, state, {
+        allFilms: action.payload
+      });
 
   }
 

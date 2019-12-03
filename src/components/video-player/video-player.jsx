@@ -17,12 +17,14 @@ class VideoPlayer extends React.PureComponent {
 
   render() {
     const {film} = this.props;
+    const previewImage = film.preview_image;
+    const previewVideoLink = film.preview_video_link;
 
     return (
       <video
         ref={this._videoRef}
-        poster={film.preview_image}
-        src={film.preview_video_link}
+        poster={previewImage}
+        src={previewVideoLink}
         width={280}
         height={175}
         muted
@@ -32,10 +34,12 @@ class VideoPlayer extends React.PureComponent {
 
   componentDidMount() {
     const {film} = this.props;
+    const previewImage = film.preview_image;
+    const previewVideoLink = film.preview_video_link;
     const video = this._videoRef.current;
 
-    video.src = film.preview_video_link;
-    video.poster = film.preview_image;
+    video.src = previewVideoLink;
+    video.poster = previewImage;
   }
 
   componentDidUpdate() {
