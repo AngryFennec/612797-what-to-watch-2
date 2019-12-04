@@ -1,4 +1,5 @@
 const initialState = {
+  isAuthorizationRequired: false,
   genre: `All genres`,
   filteredFilms: [],
   allFilms: []
@@ -39,6 +40,13 @@ const ActionCreator = {
       payload: films
     };
   },
+
+  changeAuthority: (flag) => {
+    return {
+      type: `CHANGE_AUTHORITY`,
+      payload: flag
+    };
+  }
 };
 
 const dataReducer = (state = initialState, action) => {
@@ -56,7 +64,10 @@ const dataReducer = (state = initialState, action) => {
       return Object.assign({}, state, {
         allFilms: action.payload
       });
-
+    case `CHANGE_AUTHORITY`:
+    return Object.assign({}, state, {
+      isAuthorizationRequired: action.payload
+    });
   }
 
   return state;
